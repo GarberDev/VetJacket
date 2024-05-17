@@ -37,7 +37,7 @@ function App() {
           <Route path="patient-intake-forms" element={<PatientIntakeForms />} />
           <Route path="new-client-forms" element={<NewClientForms />} />
           {/* <Route path="records-requests" element={<RecordsRequests />} />
-          <Route path="orderlist" element={<OrderList />} />
+          <Route path="order-list" element={<OrderList />} />
           <Route path="records-release-list" element={<RecordsReleaseList />} />
           <Route path="settings" element={<Settings />} /> */}
           <Route path="links-list" element={<LinksList />} />
