@@ -14,7 +14,7 @@ console.log("user", user);
       <h1>Links for {user.name}</h1>
       <ul>
         <li>Userz ID: {user.uuid}</li>
-        <li><a href="/some-link">Profile</a></li>
+        <li><a href="/sozme-link">Profile</a></li>
         <li><a href="/some-other-link">Settings</a></li>
       </ul>
     </div>
