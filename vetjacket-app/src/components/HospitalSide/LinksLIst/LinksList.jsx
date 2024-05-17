@@ -18,7 +18,7 @@ console.log("user", user);
         <li><a href="/some-other-link">Settings</a></li>
       </ul>
     </div>
-  );
+  ); 
 };
 
 export default LinksList;
