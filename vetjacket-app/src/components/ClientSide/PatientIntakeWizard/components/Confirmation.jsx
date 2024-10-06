@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import Button from '../../../base/Button';
 import useNewClientOnboardingWizardStore from '../../../../store/useNewClientOnboardingWizardStore';
 import { toast } from 'react-hot-toast';
-import OnSuccessModal from './OnSuccessModal '
-import { submitPatientIntake, submitPersonPetInfo } from '../../../../api/clientApi'
+import { submitPatientIntake } from '../../../../api/clientApi';
+import OnSuccessModal from '../components/OnSuccessModal'
 
 export default function Confirmation() {
 
@@ -12,7 +12,6 @@ export default function Confirmation() {
     prev: state.prev,
     uuid: state.uuid
   }));
-
 
   const [isConfirmed, setIsConfirmed] = useState(false);
   const [showSuccessModal, setShowSuccessModal] = useState(false);
@@ -26,7 +25,7 @@ export default function Confirmation() {
 
     // Submit the data to the server
     try {
-      const result = await submitPersonPetInfo (formData, uuid);
+      const result = await submitPatientIntake(formData, uuid); 
       console.log(result);
       toast.success("Submitted");
       setShowSuccessModal(true);
@@ -44,25 +43,24 @@ export default function Confirmation() {
     // Perform the record request logic or redirect as needed
   };
 
-  // Return the JSX for your component
   return (
     <div className="flex flex-col items-center justify-center space-y-4 p-4">
       <h2 className="text-center text-2xl font-semibold mb-4">Confirm Your Information</h2>
       <div className="space-y-2">
         <p><strong>First Name:</strong> {formData.first_name}</p>
         <p><strong>Last Name:</strong> {formData.last_name}</p>
-        <p><strong>Primary Phone:</strong> {formData.primary_cell_number}</p>
-        <p><strong>Secondary Phone:</strong> {formData.secondary_number}</p>
-        <p><strong>Address:</strong> {formData.address}</p>
         <p><strong>Email:</strong> {formData.email}</p>
-        <p><strong>Birthday:</strong> {formData.human_birthday}</p>
-        <p><strong>DL Number:</strong> {formData.dl}</p>
-        <p><strong>Pet Name:</strong> {formData.pets_name}</p>
-        <p><strong>Species:</strong> {formData.pets_species}</p>
-        <p><strong>Breed:</strong> {formData.pets_breed}</p>
-        <p><strong>Color:</strong> {formData.pet_color}</p>
-        <p><strong>Age:</strong> {formData.pet_age}</p>
-        <p><strong>Gender:</strong> {formData.pet_gender}</p>
+        <p><strong>What are we seeing your pet for today?</strong> {formData.question_1}</p>
+        <p><strong>When did the problem start?</strong> {formData.question_2}</p>
+        <p><strong>Is the problem same, better, or worse?</strong> {formData.question_3}</p>
+        <p><strong>Has this problem happened in the past?</strong> {formData.question_4}</p>
+        <p><strong>Are any medications being administered?</strong> {formData.question_5}</p>
+        <p><strong>What is the pet's current diet and feeding schedule?</strong> {formData.question_6}</p>
+        <p><strong>Eating Changes? Increased, Decreased, or No change:</strong> {formData.question_7}</p>
+        <p><strong>Any noticeable weight loss?</strong> {formData.question_8}</p>
+        <p><strong>Any increase or decrease in water consumption?</strong> {formData.question_9}</p>
+        <p><strong>Any changes in bowel movements?</strong> {formData.question_10}</p>
+        <p><strong>Any other medical history or recent changes?</strong> {formData.question_11}</p>
       </div>
       <label className="inline-flex items-center mt-3">
         <input 
@@ -85,7 +83,6 @@ export default function Confirmation() {
         isOpen={showSuccessModal}
         onClose={() => setShowSuccessModal(false)}
         onRecordRequest={handleRecordRequest}
-        userId={uuid}
 
       />
     </div>

@@ -23,6 +23,18 @@ const useNewClientOnboardingWizardStore = create((set) => ({
     pet_color: '',
     pet_age: 0,
     pet_gender: '',
+    // Questions
+    question_1: '',
+    question_2: '',
+    question_3: '',
+    question_4: '',
+    question_5: '',
+    question_6: '',
+    question_7: '',
+    question_8: '',
+    question_9: '',
+    question_10: '',
+    question_11: '',
     date_created: new Date().toISOString(),
   },
   setUUID: (uuid) => set(produce((state) => {

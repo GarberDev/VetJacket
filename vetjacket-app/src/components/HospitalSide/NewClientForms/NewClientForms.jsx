@@ -1,18 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import { useAuth } from '../../../store/useAuth';
+import '../../HospitalSide/Tables.css'
 
 function NewClientForms() {
     const [clients, setClients] = useState([]);
-    const { token } = useAuth(); // Access token from context
+    const { token } = useAuth();
+
     useEffect(() => {
         if (!token) {
             console.log('No token available');
-            return; // If no token, do not attempt to fetch
+            return;
         }
 
         const fetchData = async () => {
             try {
-                console.log(token)
                 const response = await fetch("http://localhost:8000/api/person-pet-info", {
                     headers: {
                         'Authorization': `Bearer ${token}`,
@@ -24,25 +25,30 @@ function NewClientForms() {
                 }
                 const data = await response.json();
                 setClients(data);
-                console.log("data", data)
             } catch (error) {
                 console.error("Error fetching data:", error);
             }
         };
 
         fetchData();
-    }, [token]); // Depend on token to re-fetch when it changes
+    }, [token]);
 
     return (
-        <div>
+        <div className="client-forms-container">
             <h1>New Client Forms</h1>
-            <table>
+            <table className="client-forms-table">
                 <thead>
                     <tr>
                         <th>ID</th>
                         <th>Name</th>
                         <th>Email</th>
-                        <th>Details</th>
+                        <th>Address</th>
+                        <th>Primary Cell</th>
+                        <th>Pet's Name</th>
+                        <th>Pet's Breed</th>
+                        <th>Pet's Age</th>
+                        <th>Pet's Gender</th>
+                        <th>Created At</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -52,6 +58,12 @@ function NewClientForms() {
                             <td>{`${client.first_name} ${client.last_name}`}</td>
                             <td>{client.email}</td>
                             <td>{client.address}</td>
+                            <td>{client.primary_cell_number}</td>
+                            <td>{client.pets_name}</td>
+                            <td>{client.pets_breed}</td>
+                            <td>{client.pet_age}</td>
+                            <td>{client.pet_gender}</td>
+                            <td>{new Date(client.created_at).toLocaleDateString()}</td>
                         </tr>
                     ))}
                 </tbody>

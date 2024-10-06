@@ -1,0 +1,72 @@
+.patient-intakes-container {
+    padding: 20px;
+}
+
+.patient-intakes-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.patient-intakes-table th,
+.patient-intakes-table td {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: left;
+}
+
+.patient-intakes-table th {
+    background-color: #f4f4f4;
+    font-weight: bold;
+}
+
+.patient-intakes-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.expanded-row {
+    background-color: #f4f4f4;
+}
+
+.expanded-content {
+    padding: 10px;
+    background-color: #e9e9e9;
+    border-radius: 5px;
+   
+        justify-content: flex-end;
+    
+}
+.expanded-content table {
+    width: 100%;
+    table-layout: fixed; 
+}
+
+.expanded-content colgroup col {
+    width: 50%;
+}
+
+.client-forms-container {
+    padding: 20px;
+}
+
+.client-forms-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.client-forms-table th, 
+.client-forms-table td {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: left;
+}
+
+.client-forms-table th {
+    background-color: #f4f4f4;
+}
+
+.client-forms-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+

@@ -11,6 +11,7 @@ import PatientIntakeForms from "./components/HospitalSide/PatientIntakeFroms/Pat
 import NewClientForms from "./components/HospitalSide/NewClientForms/NewClientForms";
 import NewClientOnboardingWizard from "./components/ClientSide/NewClientOnboardingWizard/NewClientOnboardingWizard";
 import LinksList from "./components/HospitalSide/LinksLIst/LinksList";
+import PatientIntakeWizard from "./components/ClientSide/PatientIntakeWizard/PatientIntakeWizard";
 
 // import RecordsRequests from './components/RecordsRequests';
 // import OrderList from './components/OrderList';
@@ -27,6 +28,7 @@ function App() {
           path="/new-client-onboarding/:uuid"
           element={<NewClientOnboardingWizard />}
         />
+        <Route path="/patient-intake/:uuid" element={<PatientIntakeWizard />} />
 
         {/* login routes */}
         <Route path="/login" element={<LoginPage />} />
@@ -34,8 +36,9 @@ function App() {
 
         <Route path="/dashboard" element={<Dashboard />}>
           {/* Nesting routes under Dashboard */}
-          <Route path="patient-intake-forms" element={<PatientIntakeForms />} />
           <Route path="new-client-forms" element={<NewClientForms />} />
+
+          <Route path="patient-intake-forms" element={<PatientIntakeForms />} />
           {/* <Route path="records-requests" element={<RecordsRequests />} />
           <Route path="order-list" element={<OrderList />} />
           <Route path="records-release-list" element={<RecordsReleaseList />} />
