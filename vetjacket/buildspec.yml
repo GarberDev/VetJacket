@@ -3,21 +3,35 @@ version: 0.2
 phases:
   install:
     runtime-versions:
-      php: 8.0 # Change this to your PHP version
-      nodejs: 14 # Change this to your Node.js version
+      php: 8.0
+      nodejs: 14
     commands:
+      - echo Changing directory to the project subfolder...
+      - cd vetjacket
+      - echo Installing Composer dependencies...
       - composer install --no-dev --prefer-dist --optimize-autoloader
-      - cp .env.example .env
-      - php artisan key:generate
+      - echo Installing Node.js dependencies...
+      - npm install
   pre_build:
     commands:
-      - php artisan migrate --force
-      - php artisan config:cache
-      - php artisan route:cache
+      - echo Setting up environment...
+      - cp .env.example .env
+      - php artisan key:generate
   build:
     commands:
-      - npm install
+      - echo Running migrations...
+      - php artisan migrate --force
+      - echo Caching configuration...
+      - php artisan config:cache
+      - php artisan route:cache
+      - echo Building frontend assets...
       - npm run production
+  post_build:
+    commands:
+      - echo Build completed successfully.
 artifacts:
   files:
-    - "**/*" # Adjust according to what you need to package
+    - "vetjacket/**/*"
+  exclude-paths:
+    - "vetjacket/vendor/**"
+    - "vetjacket/node_modules/**"
