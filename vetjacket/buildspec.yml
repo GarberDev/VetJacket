@@ -1,0 +1,23 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      php: 8.0 # Change this to your PHP version
+      nodejs: 14 # Change this to your Node.js version
+    commands:
+      - composer install --no-dev --prefer-dist --optimize-autoloader
+      - cp .env.example .env
+      - php artisan key:generate
+  pre_build:
+    commands:
+      - php artisan migrate --force
+      - php artisan config:cache
+      - php artisan route:cache
+  build:
+    commands:
+      - npm install
+      - npm run production
+artifacts:
+  files:
+    - "**/*" # Adjust according to what you need to package
