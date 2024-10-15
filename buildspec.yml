@@ -3,19 +3,21 @@ version: 0.2
 phases:
   install:
     runtime-versions:
-      php: 8.0
+      php: 8.1
       nodejs: 16
     commands:
       - echo Installing dependencies...
-      - composer install
-      - npm install
+      - composer install --no-interaction --prefer-dist
+      - npm install --prefix vetjacket-app
   build:
     commands:
       - echo Build started on `date`
       - echo Building Laravel...
-      - docker-compose build app
+      - cd vetjacket
+      - docker build -t vetjacket-laravel .
       - echo Building React...
-      - docker-compose build frontend
+      - cd ../vetjacket-app
+      - docker build -t vetjacket-react .
   post_build:
     commands:
       - echo Build completed on `date`
