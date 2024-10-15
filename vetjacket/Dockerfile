@@ -1,33 +1,31 @@
-# Use an official PHP image with Apache
-FROM php:8.1-apache
+FROM php:8.0-fpm
 
 # Install dependencies
 RUN apt-get update && apt-get install -y \
-    libpq-dev \
-    git \
+    libpng-dev \
+    libjpeg-dev \
+    libfreetype6-dev \
+    libzip-dev \
     unzip \
-    && docker-php-ext-install pdo pdo_pgsql
+    git \
+    && docker-php-ext-configure gd --with-freetype --with-jpeg \
+    && docker-php-ext-install gd \
+    && docker-php-ext-install zip
 
-# Enable Apache rewrite module
-RUN a2enmod rewrite
+# Set working directory
+WORKDIR /var/www
+
+# Copy composer.lock and composer.json
+COPY composer.json composer.lock ./
 
 # Install Composer
-COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
-# Set the working directory
-WORKDIR /var/www/html
+# Install PHP dependencies
+RUN composer install --no-dev --optimize-autoloader
 
 # Copy the application code
 COPY . .
 
-# Install PHP dependencies
-RUN composer install
-
-# Set permissions for Laravel storage and cache folders
-RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
-
-# Expose the web server port
-EXPOSE 80
-
-# Start Apache in the foreground
-CMD ["apache2-foreground"]
+# Set file permissions
+RUN chown -R www-data:www-data /var/www/storage /var/www/bootstrap/cache

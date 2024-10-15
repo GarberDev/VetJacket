@@ -1,0 +1,31 @@
+
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: ./vetjacket
+    ports:
+      - "8000:80"
+    environment:
+            - DB_CONNECTION=pgsql
+            - DB_HOST=db
+            - DB_PORT=5432
+            - DB_DATABASE=laravel
+            - DB_USERNAME=postgres
+            - DB_PASSWORD=secret
+
+  frontend:
+    build:
+      context: ./vetjacket-app
+    ports:
+      - "3000:3000"
+
+  db:
+    image: postgres:13
+    environment:
+            POSTGRES_DB: laravel
+            POSTGRES_USER: postgres
+            POSTGRES_PASSWORD: secret
+    ports:
+      - "5432:5432"
