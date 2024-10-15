@@ -5,7 +5,7 @@ phases:
     commands:
       - echo Installing dependencies...
       - cd vetjacket # Change to the directory containing composer.json
-      - composer install --no-interaction --prefer-dist
+      - composer install --no-interaction --prefer-dist -v
       - npm install --prefix vetjacket-app
   build:
     commands:
