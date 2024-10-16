@@ -22,4 +22,4 @@ phases:
       - echo Build completed on `date`
 artifacts:
   files:
-    - "**/*"
+    - vetjacket-app/build/**/* # Specify the built React files

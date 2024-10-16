@@ -15,5 +15,8 @@ COPY . .
 # Build the React app
 RUN npm run build
 
+# Serve the app (You may need to install 'serve' globally if it's not in your package.json)
+RUN npm install -g serve
+
 # Serve the app
 CMD ["npx", "serve", "-s", "build"]
