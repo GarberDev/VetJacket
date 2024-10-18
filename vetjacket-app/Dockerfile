@@ -4,13 +4,13 @@ FROM node:16
 WORKDIR /app
 
 # Copy package.json and package-lock.json
-COPY package*.json ./
+COPY vetjacket-app/package*.json ./
 
 # Install dependencies
 RUN npm install --legacy-peer-deps
 
 # Copy the rest of the app
-COPY . .
+COPY vetjacket-app/ .
 
 # Build the React app
 RUN npm run build

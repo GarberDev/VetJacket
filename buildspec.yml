@@ -16,7 +16,9 @@ phases:
       - docker build -t vetjacket-laravel .
       - echo Building React...
       - cd ../vetjacket-app
-      - docker build -t vetjacket-react .
+      - npm run build # Create a production build of the React app
+
+      # - docker build -t vetjacket-react .
   post_build:
     commands:
       - echo Build completed on `date`
