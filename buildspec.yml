@@ -17,7 +17,6 @@ phases:
       - echo Building React...
       - cd ../vetjacket-app
       - npm run build # Create a production build of the React app
-
       - docker build -t vetjacket-react .
   post_build:
     commands:
