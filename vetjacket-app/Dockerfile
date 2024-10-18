@@ -9,6 +9,7 @@ COPY vetjacket-app/package*.json ./
 # Install dependencies
 RUN npm install --legacy-peer-deps
 
+RUN npm audit fix --force
 # Copy the rest of the app
 COPY vetjacket-app/ .
 
