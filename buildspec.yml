@@ -25,4 +25,4 @@ phases:
 artifacts:
   files:
     - "**/*"
-  discard-paths: no # Maintain the directory structure
+  base-directory: vetjacket-app/ # Set this to the directory containing the built files
