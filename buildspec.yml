@@ -25,3 +25,4 @@ phases:
 artifacts:
   files:
     - "**/*"
+  discard-paths: no # Maintain the directory structure
