@@ -7,7 +7,7 @@ phases:
       - mkdir -p vetjacket-app # Ensure the directory exists
       - cd vetjacket # Change to the directory containing composer.json
       - composer install --no-interaction --prefer-dist -v
-      - cd ../vetjacket/vetjacket-app # Move to the vetjacket-app folder
+      - cd ../vetjacket-app # Move to the vetjacket-app folder
       - npm install
 
   build:
@@ -17,7 +17,7 @@ phases:
       - cd ../vetjacket
       - docker build -t vetjacket-laravel .
       - echo Building React...
-      - cd ../vetjacket/vetjacket-app
+      - cd vetjacket-app
       - npm run build # Create a production build of the React app
       - cd ..
       - docker build -t vetjacket-react .
