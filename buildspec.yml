@@ -1,14 +1,14 @@
 version: 0.2
 
 phases:
-install:
-  commands:
-    - echo Installing dependencies...
-    - mkdir -p vetjacket-app # Ensure the directory exists
-    - cd vetjacket # Change to the directory containing composer.json
-    - composer install --no-interaction --prefer-dist -v
-    - cd ../vetjacket-app # Move to the vetjacket-app folder
-    - npm install
+  install:
+    commands:
+      - echo Installing dependencies...
+      - mkdir -p vetjacket-app # Ensure the directory exists
+      - cd vetjacket # Change to the directory containing composer.json
+      - composer install --no-interaction --prefer-dist -v
+      - cd ../vetjacket-app # Move to the vetjacket-app folder
+      - npm install
 
   build:
     commands:
